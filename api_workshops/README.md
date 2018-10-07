@@ -23,7 +23,7 @@ app.use('/',router);
 app.listen(3000, () => { console.log('API is running at http://localhost:3000')});
 ```
 
-/router.js:<br/>
+/main_router.js:<br/>
 ```javascript
 const express = require('express');
 
