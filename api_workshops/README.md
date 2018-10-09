@@ -5,7 +5,7 @@ Create node project in folder:<br/>
 <code>npm init</code> (go through the steps)
 
 Create a start script in package.json:<br/>
-<code>nodemon ./app.js</code>
+<code>nodemon app.js</code>
 
 Create an app.js with router:<br/>
 /app.js: <br/>
