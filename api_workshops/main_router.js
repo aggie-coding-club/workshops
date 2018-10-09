@@ -46,13 +46,13 @@ router.get('/lists/:id', (req,res) => {
 
 // Adds an item to the specified list
 router.post('/lists/:id', (req, res) => {
-    var body = req.body;
-    var listId = req.params.id;
+    let body = req.body;
+    let listId = req.params.id;
     // Find the item in the list
     for(let i=0; i<lists.length; i++) {
-        var list = lists[i];
+        let list = lists[i];
         if(list.id == listId) {             // used == instead of === because list.id is a number and listId is a string
-            var listItem = new ListItem(body.id, body.name, body.description);
+            let listItem = new ListItem(body.id, body.name, body.description);
             list.items.push(listItem);
             res.send('Got it');
             return;
