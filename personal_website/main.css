@@ -1,0 +1,35 @@
+
+/* The '#' in front of 'my-name' means we're styling an id. Look for the html 
+tag that has the 'my-name' id to know what we're styling.  */
+#my-name {
+    /* Borders like this let us visualize the section we are styling. This is a
+    great way to "debug" your styling. */
+    border: 1px solid black; 
+    text-align: center;
+    background: teal;
+}
+
+#project-cards {
+    display: flex;
+}
+
+/* The '.' in front of 'card' means we're styling a class. This will affect all
+the tags that have 'class = card'. */
+.card {
+    flex-grow: 1;
+    flex-basis: 1px;
+    max-width: 20%;
+    box-shadow: 2px 2px 5px;
+    margin: 12px;
+    padding: 24px;
+}
+
+/* Lastly, this styled the footer of our page. */
+footer {
+    position: absolute;
+    width: 100vw;
+    text-align: center;
+    border: 1px solid black;
+    bottom: 0;
+}
+
