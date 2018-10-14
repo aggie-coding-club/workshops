@@ -1,6 +1,9 @@
 # Working Past Wordpress
 This repository holds the code shown during our 'Working Past Wordpress' workshop in the Aggie Coding Club. The code will be heavily commented to explain the logic behind most of the decisions made and what different lines of code are doing. If you are a trying to learn basic HTML and CSS to set up a personal website, this repository might help you out!
 
+## Setup
+All you need to start practicing HTML and CSS is a web browser! Simply open up your index.html file on your web browser (type in the file address in your computer or drag the file onto your browser). Refresh the page every time you make a change!
+
 ## HTML/CSS Learning Resources
 If you are wondering what a tag or certain line of code is doing, check out W3Schools for an explanation!
 
