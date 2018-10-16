@@ -1,6 +1,6 @@
 Based on/modified from [W3Schools](https://www.w3schools.com/nodejs/nodejs_mongodb.asp)
 
-## Install Mongo for npm
+## Install MongoDB's Node.JS driver
 ```npm install mongodb```
 
 ## Include in js file
@@ -20,7 +20,7 @@ MongoClient.connect(url, function(err, db) {
 });
 ```
 
-Run the file: ```node <filename>.js```
+Run the file: `node <filename>.js`
 
 ## Create a collection (a table in SQL terms)
 ```javascript
@@ -56,8 +56,9 @@ MongoClient.connect(url, function(err, db) {
 }); 
 ```
 
-You can use the ```insertMany``` function to insert many objects at once. <br/>
-The ```_id``` field is a special field in MongoDB that is unique. If it is not provided, a random one will be generated.
+You can use the [`insertMany`](https://docs.mongodb.com/manual/reference/method/db.collection.insertMany/) function to insert many objects at once.
+
+The `_id` field is a special field in MongoDB that is unique. If it is not provided, a random one will be generated.
 
 ## Finding/Querying data
 ```javascript
@@ -76,9 +77,5 @@ MongoClient.connect(url, function(err, db) {
 }); 
 ```
 
-You can also use the ```findOne``` function or even just use ```find({})``` to get everything.<br/>
-You can also use regular expressions, which I will not go into.
-
-
-
-
+You can also use the [`findOne`](https://docs.mongodb.com/manual/reference/method/db.collection.findOne/) function or even just use [`find({})`](https://docs.mongodb.com/manual/reference/method/db.collection.find/) to get everything.
+You can also use [`regular expressions`](https://docs.mongodb.com/manual/reference/operator/query/regex/), which I will not go into.
