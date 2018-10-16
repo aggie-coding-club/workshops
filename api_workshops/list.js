@@ -8,7 +8,7 @@ class ListItem {
 
 class List {
     constructor(id, name) {
-        this.items = [];
+        this.items = {};
         this.id = id;
         this.name = name;
     }
