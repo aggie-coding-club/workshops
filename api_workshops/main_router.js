@@ -106,7 +106,7 @@ router.delete('/lists/:id/:itemId', (req, res) => {
     let itemId = req.params.itemId;
     
     if(listId in lists) {
-        if(itemId in lists) {
+        if(itemId in lists[listId].items) {
             item = lists[listId].items[itemId];
             delete lists[listId].items[itemId];
             res.json({
