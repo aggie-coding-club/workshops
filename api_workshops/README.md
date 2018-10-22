@@ -1,14 +1,19 @@
-### API WORKSHOP
+# API WORKSHOP
 
 ## Steps
-Create node project in folder:<br/>
-<code>npm init</code> (go through the steps)
 
-Create a start script in package.json:<br/>
-<code>nodemon app.js</code>
+Create node project in folder:
 
-Create an app.js with router:<br/>
-/app.js: <br/>
+`npm init` (go through the steps)
+
+Create a start script in package.json:
+
+`nodemon app.js`
+
+Create an app.js with router:
+
+/app.js:
+
 ```javascript
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -23,7 +28,8 @@ app.use('/',router);
 app.listen(3000, () => { console.log('API is running at http://localhost:3000')});
 ```
 
-/main_router.js:<br/>
+/main_router.js:
+
 ```javascript
 const express = require('express');
 
@@ -36,14 +42,16 @@ router.get('/', (req,res) => {
 module.exports = router;
 ```
 
-## Packages we will be using
-- express (<code>npm install -S express</code>)
-- body-parser (<code>npm install -S body-parser</code>)
-- nodemon (<code>npm install --save-dev nodemon</code>)
-- mongodb (<code>npm install -S mongodb</code>)
+## Packages Used
+
+- express (`npm install -S express`)
+- body-parser (`npm install -S body-parser`)
+- nodemon (`npm install --save-dev nodemon`)
+- mongodb (`npm install -S mongodb`)
 
 ## Resources
-- This project makes use of [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+- This project makes use of [JavaScript Async/Await](https://javascript.info/async-await)
 - [Node.js MongoDB Driver API](http://mongodb.github.io/node-mongodb-native/2.0/api/index.html), aka the `mongodb` package
 - [W3Schools Node.js MongoDB](https://www.w3schools.com/nodejs/nodejs_mongodb.asp)
 - [DuckDuckGo](https://duckduckgo.com/)
