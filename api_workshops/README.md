@@ -40,3 +40,10 @@ module.exports = router;
 - express (<code>npm install -S express</code>)
 - body-parser (<code>npm install -S body-parser</code>)
 - nodemon (<code>npm install --save-dev nodemon</code>)
+- mongodb (<code>npm install -S mongodb</code>)
+
+## Resources
+- This project makes use of [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Node.js MongoDB Driver API](http://mongodb.github.io/node-mongodb-native/2.0/api/index.html), aka the `mongodb` package
+- [W3Schools Node.js MongoDB](https://www.w3schools.com/nodejs/nodejs_mongodb.asp)
+- [DuckDuckGo](https://duckduckgo.com/)
