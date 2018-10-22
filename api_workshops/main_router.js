@@ -1,11 +1,9 @@
 const express = require('express');
 var { List, ListItem } = require('./list'); // Import our List and ListItem classes from list.js
+var { getLists, addList, getList, addItem, getItem, deleteList, deleteItem } = require('./database_wrapper');
 
 // Create an express router 
 var router = express.Router();
-
-// Our temporary storage of Lists in our application
-var lists = {};
 
 router.get('/', (req, res) => {
     res.send('Hello World');
@@ -13,9 +11,14 @@ router.get('/', (req, res) => {
 
 // Returns a list of all of our lists
 router.get('/lists', (req, res) => {
-    res.json({
-        lists: lists
+    getLists().then(lists => {
+        res.json({
+            lists: lists
+        });
+    }).catch(err => {
+        res.send(err);
     });
+
 });
 
 // Adds a list
@@ -24,99 +27,96 @@ router.post('/lists', (req, res) => {
     let listId = body.id;
     let listName = body.name;
     let newList = new List(listId, listName);
-    lists[listId] = newList;
-    res.json({ 
-        status: "list added",
-        data: { list: newList }
+
+    addList(newList).then(res => {
+        res.json({ 
+            status: "list added",
+            data: { list: newList }
+        });
+    }).catch(err => {
+        res.send(err);
     });
+
 });
 
 // Returns the list information in the specified list
 router.get('/lists/:id', (req,res) => {
     // Get the id from path
-    let listId = req.params.id;             // get the id from the request path
-    if(listId in lists) {
+    let listId = Number(req.params.id);             // get the id from the request path
+    getList(listId).then(data => {
         res.json({
             status: "list found",
-            data: { list: lists[listId] }
+            data: { list: data }
         });
-    } else {
-        res.json({ status: "list not found"} );        // will return this if list isn't found
-    }
+    }).catch(err => {
+        res.send(err);
+    });
+
 });
 
 // Adds an item to the specified list
 router.post('/lists/:id', (req, res) => {
     let body = req.body;
-    let listId = req.params.id;
-    // Find the item in the list
-    if(listId in lists) {
-        let listItem = new ListItem(body.id, body.name, body.description);
-        let list = lists[listId];
-        list.items[body.id] = listItem;
+    let listId = Number(req.params.id);
+    let listItem = new ListItem(body.id, body.name, body.description);
+
+    addItem(listId, listItem).then((mongo_res) => {
         res.json({ 
             status: "item added",
             data: { item: listItem }
         });
-    } else {
-        res.json({ status: "list not found" });
-    }
+    }).catch(err => {
+        res.send(err);
+    })
+
 });
 
 // Deletes a list w/ given id
 router.delete('/lists/:id', (req, res) => {
     // Get the id from path
-    let listId = req.params.id;             // get the id from the request path
+    let listId = Number(req.params.id);             // get the id from the request path
 
-    if(listId in lists) {
-        list = lists[listId];
-        delete lists[listId];
+    deleteList(listId).then(data => {
         res.json({ 
             status: "list deleted", 
-            data: { list: list}
+            data: { list: data}
         });
-
-    } else {
-        res.json({ status: "list not found" });        // will return this if list isn't found
-    }
+    }).catch(err => {
+        res.send(err);
+    });
    
 });
 
 // Gets a specific item from a list
 router.get('/lists/:id/:itemId', (req, res) => {
     // Find list
-    let listId = req.params.id;             // get the id from the request path
-    let itemId = req.params.itemId;
-    
-    if(listId in lists) {
-        if(itemId in lists[listId].items) {
-            res.json({
-                status: "item found",
-                data: { item: lists[listId].items[itemId] }
-            });
-            return;
-        }
-    }
-    res.json({ status: "item not found" });
+    let listId = Number(req.params.id);             // get the id from the request path
+    let itemId = Number(req.params.itemId);
+    getItem(listId, itemId).then(data => {
+        res.json({
+            status: "item found",
+            data: { item: data }
+        });
+    }).catch(err => {
+        res.send(err);
+    });
+
 });
 
 // Deletes a specific item from a list
 router.delete('/lists/:id/:itemId', (req, res) => {
-    let listId = req.params.id;             // get the id from the request path
-    let itemId = req.params.itemId;
+    let listId = Number(req.params.id);             // get the id from the request path
+    let itemId = Number(req.params.itemId);
+
+    deleteItem(listId, itemId).then(data => {
+        res.json({
+            status: "item deleted",
+            data: { item: data }
+        });
+    }).catch(err => {
+        res.send(err);
+    });
     
-    if(listId in lists) {
-        if(itemId in lists) {
-            item = lists[listId].items[itemId];
-            delete lists[listId].items[itemId];
-            res.json({
-                status: "item deleted",
-                data: { item: item }
-            });
-            return;
-        }
-    }
-    res.json({ status: "item not found" });
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 class ListItem {
     constructor(id, name, description) {
-        this.id = id;
+        this._id = id;
         this.name = name;
         this.description = description;
     }
@@ -9,7 +9,7 @@ class ListItem {
 class List {
     constructor(id, name) {
         this.items = {};
-        this.id = id;
+        this._id = id;
         this.name = name;
     }
 }
