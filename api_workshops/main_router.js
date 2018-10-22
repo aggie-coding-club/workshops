@@ -18,120 +18,104 @@ router.get('/', (req, res) => {
 })
 
 // Returns a list of all of our lists
-router.get('/lists', (req, res) => {
-  getLists()
-    .then(lists => {
-      res.json({
-        lists: lists
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
+router.get('/lists', async (req, res) => {
+  try {
+    const lists = await getLists()
+    res.json(lists)
+  } catch (err) {
+    console.error(err)
+    res.send(err)
+  }
 })
 
 // Adds a list
-router.post('/lists', (req, res) => {
-  let body = req.body
-  let listId = body.id
-  let listName = body.name
-  let newList = new List(listId, listName)
+router.post('/lists', async (req, res) => {
+  const { id: listId, name: listName } = req.body
+  let newList = new List(Number(listId), listName)
 
-  addList(newList)
-    .then(res => {
-      res.json({
-        status: 'list added',
-        data: { list: newList }
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  try {
+    const insertionResult = await addList(newList)
+    res.status(201).json(insertionResult)
+  } catch (err) {
+    console.error(err)
+    res.send(err)
+  }
 })
 
 // Returns the list information in the specified list
-router.get('/lists/:id', (req, res) => {
+router.get('/lists/:id', async (req, res) => {
   // Get the id from path
-  let listId = Number(req.params.id) // get the id from the request path
-  getList(listId)
-    .then(data => {
-      res.json({
-        status: 'list found',
-        data: { list: data }
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  const { id } = req.params
+  const listId = Number(id) // get the id from the request path
+  try {
+    const list = await getList(listId)
+    res.json(list)
+  } catch (err) {
+    console.error(err)
+    res.send(err)
+  }
 })
 
 // Adds an item to the specified list
-router.post('/lists/:id', (req, res) => {
-  let body = req.body
-  let listId = Number(req.params.id)
-  let listItem = new ListItem(body.id, body.name, body.description)
+router.post('/lists/:id', async (req, res) => {
+  const { id } = req.params
+  const listId = Number(id)
+  const { itemIdStr, name, description } = req.body
+  const itemId = Number(itemIdStr)
+  let listItem = new ListItem(itemId, name, description)
 
-  addItem(listId, listItem)
-    .then(mongo_res => {
-      res.json({
-        status: 'item added',
-        data: { item: listItem }
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  try {
+    const list = await addItem(listId, listItem)
+    res.status(204).json(list)
+  } catch (err) {
+    console.error(err)
+    res.send(err)
+  }
 })
 
 // Deletes a list w/ given id
-router.delete('/lists/:id', (req, res) => {
-  // Get the id from path
-  let listId = Number(req.params.id) // get the id from the request path
+router.delete('/lists/:id', async (req, res) => {
+  const { id } = req.params // get the id from the request path
+  const listId = Number(id)
 
-  deleteList(listId)
-    .then(data => {
-      res.json({
-        status: 'list deleted',
-        data: { list: data }
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  try {
+    await deleteList(listId)
+    res.sendStatus(204)
+  } catch (err) {
+    console.error(err)
+    res.send(err)
+  }
 })
 
 // Gets a specific item from a list
-router.get('/lists/:id/:itemId', (req, res) => {
+router.get('/lists/:id/:itemId', async (req, res) => {
   // Find list
-  let listId = Number(req.params.id) // get the id from the request path
-  let itemId = Number(req.params.itemId)
-  getItem(listId, itemId)
-    .then(data => {
-      res.json({
-        status: 'item found',
-        data: { item: data }
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  const { id: listIdStr, itemId: itemIdStr } = req.param
+  let listId = Number(listIdStr)
+  let itemId = Number(itemIdStr)
+
+  try {
+    const item = await getItem(listId, itemId)
+    res.json(item)
+  } catch (err) {
+    console.error(err)
+    res.send(err)
+  }
 })
 
 // Deletes a specific item from a list
-router.delete('/lists/:id/:itemId', (req, res) => {
-  let listId = Number(req.params.id) // get the id from the request path
-  let itemId = Number(req.params.itemId)
+router.delete('/lists/:id/:itemId', async (req, res) => {
+  const { id: listIdStr, itemId: itemIdStr } = req.params
+  let listId = Number(listIdStr)
+  let itemId = Number(itemIdStr)
 
-  deleteItem(listId, itemId)
-    .then(data => {
-      res.json({
-        status: 'item deleted',
-        data: { item: data }
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  try {
+    await deleteItem(listId, itemId)
+    res.sendStatus(204)
+  } catch (err) {
+    console.error(err)
+    res.send(err)
+  }
 })
 
 module.exports = router
