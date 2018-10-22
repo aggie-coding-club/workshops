@@ -51,7 +51,7 @@ module.exports = router;
 
 ## Resources
 
-- This project makes use of [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- This project makes use of [JavaScript Async/Await](https://javascript.info/async-await)
 - [Node.js MongoDB Driver API](http://mongodb.github.io/node-mongodb-native/2.0/api/index.html), aka the `mongodb` package
 - [W3Schools Node.js MongoDB](https://www.w3schools.com/nodejs/nodejs_mongodb.asp)
 - [DuckDuckGo](https://duckduckgo.com/)
