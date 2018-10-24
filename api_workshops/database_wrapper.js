@@ -1,7 +1,9 @@
 var mongo = require('mongodb')
+var fs = require('fs');
 
 var MongoClient = mongo.MongoClient
-var url = 'mongodb://localhost:27017/tododb'
+var password = fs.readFileSync(process.cwd()+"/.env");
+var url = `mongodb+srv://acc:${password}@cluster0-hdiqu.gcp.mongodb.net/test?retryWrites=true`
 
 const options = { useNewUrlParser: true }
 

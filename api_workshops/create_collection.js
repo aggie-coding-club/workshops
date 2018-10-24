@@ -1,7 +1,8 @@
 // This is just used to create the collection initially
 
 var MongoClient = require('mongodb').MongoClient
-const url = 'mongodb://localhost:27017/'
+var password = fs.readFileSync(process.cwd()+"/.env");
+var url = `mongodb+srv://acc:${password}@cluster0-hdiqu.gcp.mongodb.net/test?retryWrites=true`
 
 MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
   if (err) throw err

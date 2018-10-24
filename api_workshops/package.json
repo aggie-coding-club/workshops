@@ -4,7 +4,7 @@
   "description": "## Steps Create node project in folder:<br/> <code>npm init</code> (go through the steps)",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "test": "find ./tests -name '*_test.js' | xargs mocha --exit -R spec"
   },
   "author": "",
@@ -16,6 +16,7 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "express": "^4.16.3",
+    "fs": "0.0.1-security",
     "mocha": "^5.2.0",
     "mongodb": "^3.1.8"
   }
