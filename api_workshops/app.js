@@ -11,6 +11,6 @@ app.use(bodyParser.json())
 // Use the router we defined in main_router.js for all requests at the root path
 app.use('/', router)
 
-app.listen(3000, () => {
-  console.log('API is running at http://localhost:3000')
+app.listen(8080, () => {
+  console.log('API is running')
 })
