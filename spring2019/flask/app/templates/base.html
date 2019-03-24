@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- VScode generated HTML boilerplate -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MyChatBot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='stylesheets/main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="center">
+            <!-- This is where we put the content of template that inherit
+            from this file. -->
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
