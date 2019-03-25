@@ -1,5 +1,7 @@
 html, body {
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -11,4 +13,19 @@ html, body {
 .center {
     width: 50%;
     text-align: center;
+}
+
+.message {
+    padding: 12px;
+    /* background: royalblue; */
+    width: 20vw;
+    max-width: 300px;
+    color: white;
+    margin: 12px auto;
+    border-radius: 12px;
+}
+
+#messages {
+    height: 50vh;
+    overflow-y: scroll;
 }

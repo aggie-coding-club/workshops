@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 # This form is used to get input from the user in the chatbot's page.
 class ChatForm(FlaskForm):
-    message = StringField('Your message', validators=[DataRequired()])
+    message = StringField('Your message', validators=[DataRequired()], render_kw={'autofocus': True})
