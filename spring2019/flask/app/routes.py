@@ -14,17 +14,17 @@ def chat():
     form = ChatForm()
     # Code what happens when user submits
     if form.validate_on_submit():
-        msg = { 
-            'from': 'You', 
+        msg = {
+            'from': 'You',
             'body': form.message.data,
             'color': 'royalblue'
         }
-
         messages.append(msg)
-        # respond to msg
+
+        # respond to the message
         res = {
             'from': 'Bot',
-            'body': 'What is "{}"?'.format(form.message.data),
+            'body': 'What is "{}?"'.format(form.message.data),
             'color': 'grey'
         }
         messages.append(res)

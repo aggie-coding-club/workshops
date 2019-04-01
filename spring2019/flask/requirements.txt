@@ -4,5 +4,13 @@ Flask-WTF==0.14.2
 itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.1
+nltk==3.4
+numpy==1.16.2
+pkg-resources==0.0.0
+scikit-learn==0.20.3
+scipy==1.2.1
+singledispatch==3.4.0.3
+six==1.12.0
+sklearn==0.0
 Werkzeug==0.15.1
 WTForms==2.2.1
