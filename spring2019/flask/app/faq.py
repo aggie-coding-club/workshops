@@ -40,7 +40,7 @@ class QuestionClassifier():
         corpus = self.corpus
         corpus.append(question)
         X = self.cv.transform(corpus).toarray()
-        pred = self.classifier.predict(X[-1].reshape(1, -1))
+        pred = self.classifier.predict(X[-1].reshape(1, -1))[0]
         return pred
 
 
