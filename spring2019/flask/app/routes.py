@@ -1,6 +1,9 @@
 from flask import render_template, redirect, url_for
 from app import app
 from app.forms import ChatForm
+from faq import QuestionClassifier
+
+classifier = QuestionClassifier()
 
 @app.route('/')
 @app.route('/home')
