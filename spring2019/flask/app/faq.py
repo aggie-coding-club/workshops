@@ -6,7 +6,7 @@ from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import GaussianNB
 
-from resources import training_data
+from app.resources import training_data
 
 def clean_text(text):
     text = re.sub('[^a-zA-Z]', ' ', text)

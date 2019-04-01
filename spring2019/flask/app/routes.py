@@ -1,7 +1,8 @@
 from flask import render_template, redirect, url_for
 from app import app
 from app.forms import ChatForm
-from faq import QuestionClassifier
+from app.faq import QuestionClassifier
+from app.resources import intent
 
 classifier = QuestionClassifier()
 
@@ -25,9 +26,13 @@ def chat():
         messages.append(msg)
 
         # respond to the message
+        category = classifier.predict(form.message.data)
+        
+        bot_response = intent[category]['reply'] + "\n If this does not answer your question, contact " + intent[category]['contact']
+
         res = {
             'from': 'Bot',
-            'body': 'What is "{}?"'.format(form.message.data),
+            'body': bot_response,
             'color': 'grey'
         }
         messages.append(res)
