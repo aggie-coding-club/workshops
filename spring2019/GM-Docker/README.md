@@ -1,8 +1,8 @@
 # Steps
 
 1. Create `Dockerfile`
-| >a.`FROM nginx:alpine`
-| >b. `COPY . /usr/share/nginx/html`  
+>a.`FROM nginx:alpine`\
+>b. `COPY . /usr/share/nginx/html`  
 
 2. Build and tag the docker image
 | >a. `docker build -t webserver-image:v1 .`
