@@ -1,15 +1,18 @@
 from flask import render_template, redirect, url_for
-from app import app
-from app.forms import ChatForm
+from app import app, db
 from app.faq import QuestionClassifier
+from app.forms import ChatForm
+from app.models import Question
 from app.resources import intent
 
 classifier = QuestionClassifier()
+
 
 @app.route('/')
 @app.route('/home')
 def index():
     return render_template('home.html')
+
 
 messages = []
 
@@ -25,10 +28,17 @@ def chat():
         }
         messages.append(msg)
 
+        # add message to database
+        question = Question(msg=msg['body'])
+        db.session.add(question)
+        db.session.commit()
+        
         # respond to the message
         category = classifier.predict(form.message.data)
-        
-        bot_response = intent[category]['reply'] + "\n If this does not answer your question, contact " + intent[category]['contact']
+
+        bot_response = intent[category]['reply'] + \
+            "\n If this does not answer your question, contact " + \
+            intent[category]['contact'] + " on Slack."
 
         res = {
             'from': 'Bot',
