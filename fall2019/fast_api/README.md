@@ -16,6 +16,8 @@ Install the python requirements
 ## Run the API
 
 ```
-uvicorn main:app --reload
+(env) uvicorn main:app --reload
 ```
+
+> DO NOT type the `(env)` in the above commands
 
