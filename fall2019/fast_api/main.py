@@ -38,12 +38,12 @@ def home():
     return {"Hello": "World"}
 
 
+# implement the following
 @app.post("/tweets")
 def tweet_send(tweet: Tweet):
-    write_tweet(tweet)
-    return {"message": "Tweet recieved!"}
+    pass
 
 
 @app.get("/tweets")
 def tweet_get():
-    return get_tweets()
+    pass
