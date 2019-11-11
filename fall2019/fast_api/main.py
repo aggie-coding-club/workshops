@@ -26,6 +26,12 @@ def write_tweet(tweet: Tweet):
         data["tweets"].append(jsonify_tweet(tweet))
         json.dump(data, file)
 
+def get_tweets():
+    data = {}
+    with open("tweets.json", "r") as file:
+        data = json.load(file)
+    return data
+
 
 @app.get("/")
 def home():
@@ -40,7 +46,4 @@ def tweet_send(tweet: Tweet):
 
 @app.get("/tweets")
 def tweet_get():
-    data = {}
-    with open("tweets.json", "r") as file:
-        data = json.load(file)
-    return data
+    return get_tweets()
