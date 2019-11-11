@@ -1,0 +1,20 @@
+{
+    "tweets": [
+        {
+            "owner": "Thomas McDonald",
+            "message": "This is Dope!"
+        },
+        {
+            "owner": "Shrey Shah",
+            "message": "This is Really Dope!"
+        },
+        {
+            "owner": "Edgar Matinez",
+            "message": "Stop saying Dope!"
+        },
+        {
+            "owner": "Yonathan Zetune",
+            "message": "DOPE! LOL ;P"
+        }
+    ]
+}
